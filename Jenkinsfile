@@ -21,7 +21,7 @@ pipeline {
                         sh """
                         curl -u $TOMCAT_USER:$TOMCAT_PASS \
                              --upload-file ${warPath} \
-                             "http://localhost:9090/manager/text/deploy?path=/${contextPath}&update=true"
+                             "http://192.168.255.132:9090//manager/text/deploy?path=/${contextPath}&update=true"
                         """
                     }
                 }
