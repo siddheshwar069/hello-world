@@ -29,6 +29,14 @@ pipeline {
                 }
             }
         }*/
+        stage('Prepare WAR file') {
+            steps {
+                sh '''
+                    mkdir -p build
+                    cp /var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.war build/
+                '''
+            }
+        }
         stage("buildTomcatImage"){
             steps{
                 sh '''
