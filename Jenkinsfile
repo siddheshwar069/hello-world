@@ -2,7 +2,7 @@ pipeline{
     agent any
      environment {
         TOMCAT_URL = 'http://192.168.255.132:9090/'
-        WAR_FILE = '**/*.war'  
+        WAR_FILE = '/var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.war'  
         CREDENTIALS_ID = 'deployer'  
     }
     stages{
