@@ -40,8 +40,7 @@ pipeline {
         stage('Pre Clean Docker') {
             steps {
                 sh '''
-                    docker system prune -f
-                    docker rmi -f $(docker images -q) -f 
+                    docker system prune -f 
                 '''
             }
         }
@@ -63,7 +62,6 @@ pipeline {
             steps {
                 sh '''
                     docker system prune -f
-                    docker rmi -f $(docker images -q) -f 
                 '''
             }
         }
