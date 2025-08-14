@@ -6,6 +6,12 @@ pipeline{
             steps{
                 checkout scm
             }
+
+        stage("Maven Build"){
+            steps{
+                sh "mvn clean install"
+            }
+        }
         }
     }
 }
