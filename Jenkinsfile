@@ -37,7 +37,7 @@ pipeline {
                 '''
             }
         }
-        stage('Clean Docker') {
+        stage('Pre Clean Docker') {
             steps {
                 sh '''
                     docker rm -f $(docker ps -aq) 
@@ -60,7 +60,7 @@ pipeline {
                 '''
             }
         }
-        stage('Clean Docker') {
+        stage('Post Clean Docker') {
             steps {
                 sh '''
                     docker rm -f $(docker ps -aq) 2>/dev/null || true && \
