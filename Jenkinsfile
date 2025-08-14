@@ -40,8 +40,8 @@ pipeline {
         stage('Pre Clean Docker') {
             steps {
                 sh '''
-                    docker rm -f $(docker ps -aq) 
-                    docker rmi -f $(docker images -aq) 
+                    docker system prune -f
+                    docker rmi -f $(docker images -q) -f 
                 '''
             }
         }
@@ -62,9 +62,8 @@ pipeline {
         stage('Post Clean Docker') {
             steps {
                 sh '''
-                    docker rm -f $(docker ps -aq) 2>/dev/null || true && \
-                    docker rmi -f $(docker images -aq) 2>/dev/null || true && \
-                    docker volume rm $(docker volume ls -q) 2>/dev/null || true
+                    docker system prune -f
+                    docker rmi -f $(docker images -q) -f 
                 '''
             }
         }
