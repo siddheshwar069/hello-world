@@ -23,12 +23,15 @@ pipeline{
                 script{
                     withCredentials([usernamePassword(credentialsId: env.CREDENTIALS_ID, usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]){
                         sh '''
-                        WAR_NAME=$(basename "$WAR_FILE" .war)
+                         WAR_NAME=$(basename "$WAR_FILE" .war)
                         echo "Deploying $WAR_FILE as context /$WAR_NAME"
 
                         curl -v --user "$TOMCAT_USER:$TOMCAT_PASS" \
-                             --upload-file "$WAR_FILE" \
-                             "$TOMCAT_URL/deploy?path=/$WAR_NAME&update=true"
+                            -X POST \
+                            -F "path=/$WAR_NAME" \
+                            -F "update=true" \
+                            -F "war=@$WAR_FILE" \
+                            "$TOMCAT_URL/deploy"
                         '''
 
                     }
