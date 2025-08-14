@@ -32,7 +32,7 @@ pipeline {
         stage("buildTomcatImage"){
             steps{
                 sh '''
-                    docker build -t helloWorldWebapp .
+                    docker build -t helloworldwebapp .
                 '''
             }
         }
