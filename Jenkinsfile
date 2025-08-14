@@ -15,10 +15,10 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'deployer', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
                     script {
-                        def warPath = 'webapp/target/webapp-1.0-SNAPSHOT.war'
+                        def warPath = '/var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.war'
                         def contextPath = 'webapp-1.0-SNAPSHOT'
 
-                        sh "ls -l target/"
+
 
                         sh """
                         curl -u $TOMCAT_USER:$TOMCAT_PASS \
