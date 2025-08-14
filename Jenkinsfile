@@ -9,6 +9,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 sh 'mvn clean install'
+                sh 'ls -l target/'
             }
         }
         stage('Deploy to Tomcat') {
