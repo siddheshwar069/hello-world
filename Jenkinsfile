@@ -16,7 +16,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'deployer', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
                     script {
-                        def warPath = 'target/webapp-1.0-SNAPSHOT.war'
+                        def warPath = 'webapp/target/webapp-1.0-SNAPSHOT.war'
                         def contextPath = 'webapp-1.0-SNAPSHOT'
 
                         sh "ls -l target/"
