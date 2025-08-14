@@ -11,7 +11,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Deploy-to-Tomcat') {
+        '''stage('Deploy-to-Tomcat') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'deployer', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
                     script {
@@ -27,6 +27,13 @@ pipeline {
                         """
                     }
                 }
+            }
+        }'''
+        stage("buildTomcatImage"){
+            steps{
+                sh '''
+                    docker build Dockerfile -t helloWorldWebapp .
+                '''
             }
         }
     }
