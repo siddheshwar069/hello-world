@@ -2,7 +2,7 @@ pipeline{
     agent any
      environment {
         TOMCAT_URL = 'http://192.168.255.132:9090/'
-        WAR_FILE = '**/*.war'  /
+        WAR_FILE = '**/*.war'  
         CREDENTIALS_ID = 'deployer'  
     }
     stages{
