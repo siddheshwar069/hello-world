@@ -11,5 +11,21 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        stage('Deploy to Tomcat') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'deployer', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
+                    script {
+                        def warPath = 'target/yourapp.war'
+                        def contextPath = 'yourapp'
+
+                        sh """
+                        curl -u $TOMCAT_USER:$TOMCAT_PASS \
+                             --upload-file ${warPath} \
+                             "http://localhost:9090/manager/text/deploy?path=/${contextPath}&update=true"
+                        """
+                    }
+                }
+            }
+        }
     }
 }
